@@ -12,6 +12,11 @@ namespace biblioteca1
         static string libroCategoria = "";
         static bool libroDisponible = true;
 
+        static string usuarioID = "";
+        static string usuarioNombre = "";
+        static string correo = "";
+        static bool usuarioActivo = true;
+
         static void Main(string[] args)
         {
             ShowMainMenu();

@@ -357,5 +357,24 @@ namespace biblioteca1
                     break;
             }
         }
+        //--- Registro de Usuarios ---//
+        static void RegisterUser()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Registro de Usuario\nIngrese los datos del usuario:");
+            Console.WriteLine("================================");
+            Console.Write("Nombre: ");
+            usuarioNombre = Console.ReadLine() ?? "";
+            Console.Write("Correo electrónico: ");
+            correo = Console.ReadLine() ?? "";
+            Console.Write("ID de usuario: ");
+            usuarioID = Console.ReadLine() ?? "";
+            usuarioActivo = true;
+
+            Console.WriteLine($"Usuario '{usuarioNombre}' registrado exitosamente.");
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
+        }
     }
 }

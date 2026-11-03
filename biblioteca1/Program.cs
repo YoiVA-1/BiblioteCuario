@@ -192,5 +192,49 @@ namespace biblioteca1
             }
             Console.ReadKey();
         }
+
+        //--- Ver Detalle de Libro ---//
+        static void ViewBookDetail()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Detalle de Libro\nIngrese el título del libro:");
+            Console.WriteLine("================================");
+            string title = Console.ReadLine() ?? "";
+            if (title.Equals(libroTitulo, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"Título: {libroTitulo}\nAutor: {libroAutor}\nAño: {libroAño}\nCategoría: {libroCategoria}");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un libro con el título '{title}'.");
+            }
+            Console.ReadKey();
+        }
+
+        //--- Eliminar Libro ---//
+        static void DeleteBook()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Eliminar Libro\nIngrese el título del libro a eliminar:");
+            Console.WriteLine("================================");
+            string title = Console.ReadLine() ?? "";
+            if (title.Equals(libroTitulo, StringComparison.OrdinalIgnoreCase))
+            {
+                libroTitulo = "";
+                libroAutor = "";
+                libroAño = "";
+                libroCategoria = "";
+                libroID = "";
+                Console.WriteLine($"Libro eliminado exitosamente.");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un libro con el título '{title}'.");
+            }
+            Console.ReadKey();
+        }
+
     }
 }

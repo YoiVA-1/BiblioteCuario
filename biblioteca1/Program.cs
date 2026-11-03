@@ -235,5 +235,89 @@ namespace biblioteca1
             }
             Console.ReadKey();
         }
+
+        //--- Menú de Actualización ---//
+        static void UpdateBookMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Actualización de Libros\nSeleccione una opción:\n1. Actualizar libro por título\n2. Actualizar libro por autor\n3. Actualizar año y categoría\n4. Volver al menú de libros");
+            Console.WriteLine("================================");
+            string updateOption = Console.ReadLine() ?? "0";
+            switch (updateOption)
+            {
+                case "1":
+                    EditBookTitle();
+                    break;
+                case "2":
+                    EditBookAuthor();
+                    break;
+                case "3":
+                    EditBookYearCategory();
+                    break;
+                case "4":
+                    ShowBookMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+
+        static void EditBookTitle()
+        {
+            Console.Clear();
+            Console.WriteLine("Actualizar Libro por Título\nIngrese el título actual del libro:");
+            string oldTitle = Console.ReadLine() ?? "";
+            if (oldTitle.Equals(libroTitulo, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.Write("Ingrese el nuevo título: ");
+                libroTitulo = Console.ReadLine() ?? "";
+                Console.WriteLine($"Título actualizado a '{libroTitulo}'.");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el libro.");
+            }
+            Console.ReadKey();
+        }
+
+        static void EditBookAuthor()
+        {
+            Console.Clear();
+            Console.WriteLine("Actualizar Libro por Autor\nIngrese el título del libro:");
+            string title = Console.ReadLine() ?? "";
+            if (title.Equals(libroTitulo, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.Write("Ingrese el nuevo autor: ");
+                libroAutor = Console.ReadLine() ?? "";
+                Console.WriteLine($"Autor actualizado a '{libroAutor}'.");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el libro.");
+            }
+            Console.ReadKey();
+        }
+
+        static void EditBookYearCategory()
+        {
+            Console.Clear();
+            Console.WriteLine("Actualizar Año y Categoría\nIngrese el título del libro:");
+            string title = Console.ReadLine() ?? "";
+            if (title.Equals(libroTitulo, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.Write("Ingrese el nuevo año: ");
+                libroAño = Console.ReadLine() ?? "";
+                Console.Write("Ingrese la nueva categoría: ");
+                libroCategoria = Console.ReadLine() ?? "";
+                Console.WriteLine("Datos actualizados correctamente.");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el libro.");
+            }
+            Console.ReadKey();
+        }
     }
 }

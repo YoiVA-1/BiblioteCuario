@@ -344,7 +344,7 @@ namespace biblioteca1
                     ViewUserDetail();
                     break;
                 case "4":
-                    UpdateUser();
+                    UpdateUserMenu();
                     break;
                 case "5":
                     DeleteUser();
@@ -409,6 +409,88 @@ namespace biblioteca1
             else
             {
                 Console.WriteLine($"No se encontró un usuario con el ID '{id}'.");
+            }
+            Console.ReadKey();
+        }
+        //--- Actualizar Usuario ---//
+        static void UpdateUserMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Actualización de Usuarios\nSeleccione una opción:\n1. Actualizar nombre\n2. Actualizar correo\n3. Volver al menú de usuarios");
+            Console.WriteLine("================================");
+            string updateOption = Console.ReadLine() ?? "0";
+            switch (updateOption)
+            {
+                case "1":
+                    EditUserName();
+                    break;
+                case "2":
+                    EditUserContact();
+                    break;
+                case "3":
+                    ToggleUserActiveStatus();
+                break;
+                case "4":
+                    ShowUserMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+        //--- Editar Nombre de Usuario ---//
+        static void EditUserName()
+        {
+            Console.Clear();
+            Console.WriteLine("Actualizar Nombre de Usuario\nIngrese el ID del usuario:");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.Write("Ingrese el nuevo nombre: ");
+                usuarioNombre = Console.ReadLine() ?? "";
+                Console.WriteLine($"Nombre actualizado a '{usuarioNombre}'.");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el usuario.");
+            }
+            Console.ReadKey();
+        }
+
+        //--- Editar Contacto de Usuario ---//
+        static void EditUserContact()
+        {
+            Console.Clear();
+            Console.WriteLine("Actualizar Correo de Usuario\nIngrese el ID del usuario:");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.Write("Ingrese el nuevo correo: ");
+                correo = Console.ReadLine() ?? "";
+                Console.WriteLine($"Correo actualizado a '{correo}'.");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el usuario.");
+            }
+            Console.ReadKey();
+        }
+        //--- activar / Desactivar Usuario ---//
+        static void ToggleUserActiveStatus()
+        {
+            Console.Clear();
+            Console.WriteLine("Activar / Desactivar Usuario\nIngrese el ID del usuario:");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                usuarioActivo = !usuarioActivo;
+                string status = usuarioActivo ? "activo" : "inactivo";
+                Console.WriteLine($"El usuario ahora está {status}.");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el usuario.");
             }
             Console.ReadKey();
         }

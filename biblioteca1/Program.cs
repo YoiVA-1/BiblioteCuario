@@ -432,6 +432,9 @@ namespace biblioteca1
                     ToggleUserActiveStatus();
                 break;
                 case "4":
+                    DeleteUser();
+                    break;
+                case "5":
                     ShowUserMenu();
                     break;
                 default:
@@ -491,6 +494,27 @@ namespace biblioteca1
             else
             {
                 Console.WriteLine("No se encontró el usuario.");
+            }
+            Console.ReadKey();
+        }
+        //--- Eliminar Usuario ---//
+        static void DeleteUser()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Eliminar Usuario\nIngrese el ID del usuario a eliminar:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                usuarioNombre = "";
+                correo = "";
+                usuarioID = "";
+                Console.WriteLine($"Usuario eliminado exitosamente.");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un usuario con el ID '{id}'.");
             }
             Console.ReadKey();
         }

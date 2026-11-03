@@ -114,6 +114,84 @@ namespace biblioteca1
             Console.ReadKey();
         }
 
+        //--- Menú de Listado de Libros ---//
+        static void ListBooksMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Listado de Libros\nSeleccione una opción:\n1. Listar todos los libros\n2. Listar libros disponibles\n3. Listar libros prestados\n4. Volver al menú de libros");
+            Console.WriteLine("================================");
+            string listOption = Console.ReadLine() ?? "0";
+            switch (listOption)
+            {
+                case "1":
+                    ListAllBooks();
+                    break;
+                case "2":
+                    ListBooksAvailable();
+                    break;
+                case "3":
+                    ListBooksBorrowed();
+                    break;
+                case "4":
+                    ShowBookMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+
+        static void ListAllBooks()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Todos los Libros");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(libroTitulo))
+            {
+                Console.WriteLine("No hay libros registrados.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {libroID} | Título: {libroTitulo}, Autor: {libroAutor}, Año: {libroAño}, Categoría: {libroCategoria}");
+            }
+            Console.ReadKey();
+        }
+
+        static void ListBooksAvailable()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Libros Disponibles");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(libroTitulo) || !libroDisponible)
+            {
+                Console.WriteLine("No hay libros disponibles.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {libroID} | Título: {libroTitulo}, Autor: {libroAutor}, Año: {libroAño}, Categoría: {libroCategoria}");
+            }
+            Console.ReadKey();
+        }
+
+        static void ListBooksBorrowed()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Libros Prestados");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(libroTitulo) || libroDisponible)
+            {
+                Console.WriteLine("No hay libros prestados.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {libroID} | Título: {libroTitulo}, Autor: {libroAutor}, Año: {libroAño}, Categoría: {libroCategoria}");
+            }
+            Console.ReadKey();
+        }
 
     }
 }

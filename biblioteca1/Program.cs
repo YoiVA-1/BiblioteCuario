@@ -376,5 +376,23 @@ namespace biblioteca1
             Console.WriteLine("\nPresione una tecla para continuar...");
             Console.ReadKey();
         }
+
+        //--- Listado de Usuarios ---//
+        static void ListUsers()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Usuarios");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(usuarioNombre))
+            {
+                Console.WriteLine("No hay usuarios registrados.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {usuarioID} | Nombre: {usuarioNombre}, Correo: {correo}");
+            }
+            Console.ReadKey();
+        }
     }
 }

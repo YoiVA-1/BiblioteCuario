@@ -55,5 +55,39 @@ namespace biblioteca1
                 }
             } while (seleccion != "6");
         }
+
+        //--- Menú de Libros ---//
+        static void ShowBookMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Libros\nSeleccione una opción:\n1. Registrar libro\n2. Listar libros\n3. Ver detalle de libro\n4. Actualizar libro\n5. Eliminar libro\n6. Volver al menú principal");
+            Console.WriteLine("================================");
+            string bookOption = Console.ReadLine() ?? "0";
+            switch (bookOption)
+            {
+                case "1":
+                    RegisterBook();
+                    break;
+                case "2":
+                    ListBooksMenu();
+                    break;
+                case "3":
+                    ViewBookDetail();
+                    break;
+                case "4":
+                    UpdateBookMenu();
+                    break;
+                case "5":
+                    DeleteBook();
+                    break;
+                case "6":
+                    ShowMainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
     }
 }

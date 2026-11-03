@@ -5,6 +5,12 @@ namespace biblioteca1
     class Program
     {
         // Variables estáticas individuales
+        static string libroID = "";
+        static string libroTitulo = "";
+        static string libroAutor = "";
+        static string libroAño = "";
+        static string libroCategoria = "";
+        static bool libroDisponible = true;
 
         static void Main(string[] args)
         {
@@ -24,9 +30,9 @@ namespace biblioteca1
                 seleccion = Console.ReadLine() ?? "0";
                 switch (seleccion)
                 {
-                    //case "1":
-                    //    ShowBookMenu();
-                    //    break;
+                    case "1":
+                        ShowBookMenu();
+                        break;
                     //case "2":
                         //ShowUserMenu();
                         //break;
@@ -49,5 +55,39 @@ namespace biblioteca1
                 }
             } while (seleccion != "6");
         }
+
+        //--- Menú de Libros ---//
+        static void ShowBookMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Libros\nSeleccione una opción:\n1. Registrar libro\n2. Listar libros\n3. Ver detalle de libro\n4. Buscar libro por autor\n5. Actualizar libro\n6. Eliminar libro\n7. Volver al menú principal");
+            Console.WriteLine("================================");
+            string bookOption = Console.ReadLine() ?? "0";
+            switch (bookOption)
+            {
+                case "1":
+                    RegisterBook();
+                    break;
+                case "2":
+                    ListBooksMenu();
+                    break;
+                case "3":
+                    ViewBookDetail();
+                    break;
+                case "4":
+                    UpdateBookMenu();
+                    break;
+                case "5":
+                    DeleteBook();
+                    break;
+                case "6":
+                    ShowMainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
     }
-    }
+}

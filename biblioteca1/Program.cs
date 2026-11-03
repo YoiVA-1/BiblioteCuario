@@ -38,9 +38,9 @@ namespace biblioteca1
                     case "1":
                         ShowBookMenu();
                         break;
-                    //case "2":
-                        //ShowUserMenu();
-                        //break;
+                    case "2":
+                        ShowUserMenu();
+                        break;
                     //case "3":
                         //ShowLoansMenu();
                         //break;
@@ -323,6 +323,39 @@ namespace biblioteca1
                 Console.WriteLine("No se encontró el libro.");
             }
             Console.ReadKey();
+        }
+//--- Menú de Usuarios ---//
+        static void ShowUserMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Usuarios\nSeleccione una opción:\n1. Registrar usuario\n2. Listar usuarios\n3. Ver detalle de usuario\n4. Actualizar usuario\n5. Eliminar usuario\n6. Volver al menú principal");
+            Console.WriteLine("================================");
+            string userOption = Console.ReadLine() ?? "0";
+            switch (userOption)
+            {
+                case "1":
+                    RegisterUser();
+                    break;
+                case "2":
+                    ListUsers();
+                    break;
+                case "3":
+                    ViewUserDetail();
+                    break;
+                case "4":
+                    UpdateUser();
+                    break;
+                case "5":
+                    DeleteUser();
+                    break;
+                case "6":
+                    ShowMainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
         }
     }
 }

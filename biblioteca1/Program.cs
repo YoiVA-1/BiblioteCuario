@@ -212,6 +212,28 @@ namespace biblioteca1
             Console.ReadKey();
         }
 
-
+        //--- Eliminar Libro ---//
+        static void DeleteBook()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Eliminar Libro\nIngrese el título del libro a eliminar:");
+            Console.WriteLine("================================");
+            string title = Console.ReadLine() ?? "";
+            if (title.Equals(libroTitulo, StringComparison.OrdinalIgnoreCase))
+            {
+                libroTitulo = "";
+                libroAutor = "";
+                libroAño = "";
+                libroCategoria = "";
+                libroID = "";
+                Console.WriteLine($"Libro eliminado exitosamente.");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un libro con el título '{title}'.");
+            }
+            Console.ReadKey();
+        }
     }
 }

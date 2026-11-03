@@ -394,5 +394,23 @@ namespace biblioteca1
             }
             Console.ReadKey();
         }
+        //--- Ver Detalle de Usuario ---//
+        static void ViewUserDetail()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Detalle de Usuario\nIngrese el ID del usuario:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"Nombre: {usuarioNombre}\nCorreo: {correo}\nID: {usuarioID}");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un usuario con el ID '{id}'.");
+            }
+            Console.ReadKey();
+        }
     }
 }

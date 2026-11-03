@@ -89,5 +89,29 @@ namespace biblioteca1
                     break;
             }
         }
+
+        //--- Registro de Libros ---//
+        static void RegisterBook()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Registro de Libro\nIngrese los datos del libro:");
+            Console.WriteLine("================================");
+            Console.Write("Título: ");
+            libroTitulo = Console.ReadLine() ?? "";
+            Console.Write("Autor: ");
+            libroAutor = Console.ReadLine() ?? "";
+            Console.Write("Año de publicación: ");
+            libroAño = Console.ReadLine() ?? "";
+            Console.Write("Género / Categoría: ");
+            libroCategoria = Console.ReadLine() ?? "";
+            Console.Write("ID / ISBN: ");
+            libroID = Console.ReadLine() ?? "";
+            libroDisponible = true;
+
+            Console.WriteLine($"Libro '{libroTitulo}' registrado exitosamente.");
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
+        }
     }
 }

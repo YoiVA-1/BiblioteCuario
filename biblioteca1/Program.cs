@@ -570,5 +570,25 @@ namespace biblioteca1
                     break;
             }
         }
+        //--- Registro de Préstamos ---//
+        static void CreateLoan()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Registro de Préstamo\nIngrese los datos del préstamo:");
+            Console.WriteLine("================================");
+            Console.Write("ID de préstamo: ");
+            prestamoID = Console.ReadLine() ?? "";
+            Console.Write("Fecha de préstamo (dd/MM/yyyy): ");
+            fechaPrestamo = Console.ReadLine() ?? "";
+            Console.Write("Fecha límite de devolución (dd/MM/yyyy): ");
+            fechaLimite = Console.ReadLine() ?? "";
+            estado = "Activo";
+            usuarioTienePrestamo = true; // Simula que el usuario tiene un préstamo activo
+
+            Console.WriteLine($"Préstamo '{prestamoID}' registrado exitosamente.");
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
+        }
     }
 }

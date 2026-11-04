@@ -17,6 +17,11 @@ namespace biblioteca1
         static string correo = "";
         static bool usuarioActivo = true;
         static bool usuarioTienePrestamo = false; // Variable para simular si el usuario tiene préstamos activos temporalmente
+        static string prestamoID = "";
+        static string fechaPrestamo = "";
+        static string fechaLimite = "";
+        static string fechaDevolucion = "";
+        static string estado = "";
 
         static void Main(string[] args)
         {
@@ -498,7 +503,6 @@ namespace biblioteca1
             }
             Console.ReadKey();
         }
-        //--- Eliminar Usuario ---//
 //--- Eliminar Usuario ---//
         static void DeleteUser()
         {

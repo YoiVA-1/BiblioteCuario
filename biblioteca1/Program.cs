@@ -803,5 +803,23 @@ namespace biblioteca1
                 Console.WriteLine($"No se encontró un libro con el término '{searchTerm}'.");
             }
         }
+        //--- Buscar Usuario ---//
+        static void SearchUser()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Buscar Usuario\nIngrese el nombre o ID del usuario:");
+            Console.WriteLine("================================");
+            string searchTerm = Console.ReadLine() ?? "";
+            if (searchTerm.Equals(usuarioNombre, StringComparison.OrdinalIgnoreCase) ||
+                searchTerm.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"Usuario encontrado: ID: {usuarioID} | Nombre: {usuarioNombre}, Correo: {correo}");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un usuario con el término '{searchTerm}'.");
+            }
+        }
     }
 }

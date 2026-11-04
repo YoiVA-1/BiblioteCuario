@@ -69,6 +69,7 @@ namespace biblioteca1
                             Console.WriteLine("Operación cancelada. Presione cualquier tecla para continuar...");
                             Console.ReadKey();
                         }
+                        break;
                     default:
                         Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
                         break;

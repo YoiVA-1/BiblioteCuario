@@ -17,6 +17,11 @@ namespace biblioteca1
         static string correo = "";
         static bool usuarioActivo = true;
         static bool usuarioTienePrestamo = false; // Variable para simular si el usuario tiene préstamos activos temporalmente
+        static string prestamoID = "";
+        static string fechaPrestamo = "";
+        static string fechaLimite = "";
+        static string fechaDevolucion = "";
+        static string estado = "";
 
         static void Main(string[] args)
         {
@@ -42,9 +47,9 @@ namespace biblioteca1
                     case "2":
                         ShowUserMenu();
                         break;
-                    //case "3":
-                        //ShowLoansMenu();
-                        //break;
+                    case "3":
+                        ShowLoansMenu();
+                        break;
                     //case "4":
                         //ShowSearchReportsMenu();
                         //break;
@@ -498,7 +503,6 @@ namespace biblioteca1
             }
             Console.ReadKey();
         }
-        //--- Eliminar Usuario ---//
 //--- Eliminar Usuario ---//
         static void DeleteUser()
         {
@@ -529,6 +533,226 @@ namespace biblioteca1
                 Console.WriteLine($"\nNo se encontró un usuario con el ID '{id}'.");
             }
             
+            Console.WriteLine("\nPresione cualquier tecla para continuar...");
+            Console.ReadKey();
+        }
+
+        //--- Menú de Préstamos ---//
+        static void ShowLoansMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Préstamos\nSeleccione una opción:\n1. Registrar préstamo\n2. Listar préstamos\n3. Ver detalle de préstamo\n4. Registrar devolucion\n5. Eliminar préstamo\n6. Volver al menú principal");
+            Console.WriteLine("================================");
+            string loanOption = Console.ReadLine() ?? "0";
+            switch (loanOption)
+            {
+                case "1":
+                    CreateLoan();
+                    break;
+                case "2":
+                    ListLoansMenu();
+                    break;
+                case "3":
+                    ViewLoanDetail();
+                    break;
+                case "4":
+                    RegisterReturn();
+                    break;
+                case "5":
+                    DeleteLoan();
+                    break;
+                case "6":
+                    ShowMainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+        //--- Registro de Préstamos ---//
+        static void CreateLoan()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Registro de Préstamo\nIngrese los datos del préstamo:");
+            Console.WriteLine("================================");
+            Console.Write("Ingrese el nombre del usuario que quiere hacer el préstamo: ");
+            string opcionUsuarioPrestamo= Console.ReadLine() ?? "";
+            if (opcionUsuarioPrestamo == usuarioNombre && usuarioActivo)
+                {
+                    Console.Write("Ingrese el título del libro a prestar: ");
+                    string opcionLibroPrestamo = Console.ReadLine() ?? "";
+                if(opcionLibroPrestamo == libroTitulo && libroDisponible)
+                {
+                    Console.Write("Ingrese el ID del préstamo: ");
+                    prestamoID = Console.ReadLine() ?? "";
+                    Console.Write("Ingrese la fecha de préstamo (dd/MM/yyyy): ");
+                    fechaPrestamo = Console.ReadLine() ?? "";
+                    Console.Write("Ingrese la fecha límite de devolución (dd/MM/yyyy): ");
+                    fechaLimite = Console.ReadLine() ?? "";
+                    estado = "Activo";
+                    libroDisponible = false; // Simula que el libro ya no está disponible
+                    usuarioTienePrestamo = true; // Simula que el usuario ahora tiene un préstamo activo
+                    Console.WriteLine($"Préstamo '{prestamoID}' registrado exitosamente.");
+                }
+                else
+                {
+                    Console.WriteLine("El libro no está disponible para préstamo o no existe.");
+                }
+            }
+        }
+        //--- Listado de Préstamos ---//
+        static void ListLoansMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Préstamos\nSeleccione una opción:\n1. Listar todos los préstamos\n2. Listar préstamos activos\n3. Listar préstamos devueltos\n4. Volver al menú de préstamos");
+            Console.WriteLine("================================");
+            string listOption = Console.ReadLine() ?? "0";
+            switch (listOption)
+            {
+                case "1":
+                    ListAllLoans();
+                    break;
+                case "2":
+                    ListLoansActive();
+                    break;
+                case "3":
+                    ListLoansClosed();
+                    break;
+                case "4":
+                    ShowLoansMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+        //--- listar todo los prestamos por ---//
+        static void ListAllLoans()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Todos los Préstamos");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(prestamoID))
+            {
+                Console.WriteLine("No hay préstamos registrados.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {prestamoID} | Fecha de préstamo: {fechaPrestamo}, Fecha límite: {fechaLimite}, Estado: {estado}");
+            }
+            Console.ReadKey();
+        }
+        //--- listar prestamos activos ---//
+        static void ListLoansActive()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Préstamos Activos");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(prestamoID) || estado != "Activo")
+            {
+                Console.WriteLine("No hay préstamos activos.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {prestamoID} | Fecha de préstamo: {fechaPrestamo}, Fecha límite: {fechaLimite}, Estado: {estado}");
+            }
+            Console.ReadKey();
+        }
+
+        //--- listar prestamos devueltos ---//
+        static void ListLoansClosed()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Préstamos Devueltos");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(prestamoID) || estado != "Devuelto")
+            {
+                Console.WriteLine("No hay préstamos devueltos.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {prestamoID} | Fecha de préstamo: {fechaPrestamo}, Fecha límite: {fechaLimite}, Fecha de devolución: {fechaDevolucion}, Estado: {estado}");
+            }
+            Console.ReadKey();
+        }
+        //--- Ver Detalle de Préstamo (ID) ---//
+        static void ViewLoanDetail()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Detalle de Préstamo\nIngrese el ID del préstamo:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(prestamoID, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"ID: {prestamoID}\nFecha de préstamo: {fechaPrestamo}\nFecha límite: {fechaLimite}\nFecha de devolución: {fechaDevolucion}\nEstado: {estado}");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un préstamo con el ID '{id}'.");
+            }
+            Console.ReadKey();
+        }
+        //--- Registrar Devolución ---//
+        static void RegisterReturn()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Registrar Devolución\nIngrese el ID del préstamo:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(prestamoID, StringComparison.OrdinalIgnoreCase))
+            {
+                if (estado == "Activo")
+                {
+                    Console.Write("Ingrese la fecha de devolución (dd/MM/yyyy): ");
+                    fechaDevolucion = Console.ReadLine() ?? "";
+                    estado = "Devuelto";
+                    usuarioTienePrestamo = false; // Simula que el usuario ya no tiene un préstamo activo
+                    Console.WriteLine($"Préstamo '{prestamoID}' marcado como devuelto.");
+                }
+                else
+                {
+                    Console.WriteLine("El préstamo ya ha sido devuelto.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un préstamo con el ID '{id}'.");
+            }
+            Console.ReadKey();
+        }
+        //--- Eliminar Préstamo ---//
+        static void DeleteLoan()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Eliminar Préstamo\nIngrese el ID del préstamo a eliminar:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+
+            if (id.Equals(prestamoID, StringComparison.OrdinalIgnoreCase))
+            {
+                prestamoID = "";
+                libroDisponible = true; // Simula que el libro ahora está disponible
+                fechaPrestamo = "";
+                fechaLimite = "";
+                fechaDevolucion = "";
+                estado = "";
+                usuarioTienePrestamo = false; // Simula que el usuario ya no tiene un préstamo activo
+                Console.WriteLine("Préstamo eliminado exitosamente.");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un préstamo con el ID '{id}'.");
+            }
+
             Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
         }

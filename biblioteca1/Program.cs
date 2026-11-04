@@ -687,6 +687,34 @@ namespace biblioteca1
             }
             Console.ReadKey();
         }
-        
+        //--- Registrar Devolución ---//
+        static void RegisterReturn()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Registrar Devolución\nIngrese el ID del préstamo:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(prestamoID, StringComparison.OrdinalIgnoreCase))
+            {
+                if (estado == "Activo")
+                {
+                    Console.Write("Ingrese la fecha de devolución (dd/MM/yyyy): ");
+                    fechaDevolucion = Console.ReadLine() ?? "";
+                    estado = "Devuelto";
+                    usuarioTienePrestamo = false; // Simula que el usuario ya no tiene un préstamo activo
+                    Console.WriteLine($"Préstamo '{prestamoID}' marcado como devuelto.");
+                }
+                else
+                {
+                    Console.WriteLine("El préstamo ya ha sido devuelto.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un préstamo con el ID '{id}'.");
+            }
+            Console.ReadKey();
+        }
     }
 }

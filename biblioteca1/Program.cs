@@ -669,5 +669,24 @@ namespace biblioteca1
             }
             Console.ReadKey();
         }
+        //--- Ver Detalle de Préstamo (ID) ---//
+        static void ViewLoanDetail()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Detalle de Préstamo\nIngrese el ID del préstamo:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(prestamoID, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"ID: {prestamoID}\nFecha de préstamo: {fechaPrestamo}\nFecha límite: {fechaLimite}\nFecha de devolución: {fechaDevolucion}\nEstado: {estado}");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un préstamo con el ID '{id}'.");
+            }
+            Console.ReadKey();
+        }
+        
     }
 }

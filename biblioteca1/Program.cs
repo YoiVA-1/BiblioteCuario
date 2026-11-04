@@ -50,9 +50,9 @@ namespace biblioteca1
                     case "3":
                         ShowLoansMenu();
                         break;
-                    //case "4":
-                        //ShowSearchReportsMenu();
-                        //break;
+                    case "4":
+                        ShowSearchReportsMenu();
+                        break;
                     //case "5":
                         //ShowPersistenceMenu();
                         //break;
@@ -755,6 +755,33 @@ namespace biblioteca1
 
             Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
+        }
+        //--- Menú de Búsquedas y Reportes ---//
+        static void ShowSearchReportsMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Búsquedas y Reportes\nSeleccione una opción:\n1. Buscar libro\n2. Buscar usuario\n3. menu de reportes\n5. Volver al menú principal");
+            Console.WriteLine("================================");
+            string searchOption = Console.ReadLine() ?? "0";
+            switch (searchOption)
+            {
+                case "1":
+                    SearchBook();
+                    break;
+                case "2":
+                    SearchUser();
+                    break;
+                case "3":
+                    ReportsMenu();
+                    break;
+                case "4":
+                    ShowMainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
         }
     }
 }

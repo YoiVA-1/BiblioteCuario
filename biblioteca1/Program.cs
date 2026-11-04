@@ -821,5 +821,120 @@ namespace biblioteca1
                 Console.WriteLine($"No se encontró un usuario con el término '{searchTerm}'.");
             }
         }
+        //--- Menú de Reportes ---//
+        static void ReportsMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Reportes\nSeleccione una opción:\n1. préstamos por usuario\n2. préstamos por libro\n3. préstamos vencidos\n4. resumen general\n5. Volver al menú de búsquedas y reportes");
+            Console.WriteLine("================================");
+            string reportOption = Console.ReadLine() ?? "0";
+            switch (reportOption)
+            {
+                case "1":
+                    ReportByUser();
+                    break;
+                case "2":
+                    ReportByBook();
+                    break;
+                case "3":
+                    ReportOverdue();
+                    break;
+                case "4":
+                    ReportSummary();
+                    break;
+                case "5":
+                    ShowSearchReportsMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+        //--- Reporte por Usuario ---//
+        static void ReportByUser()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Reporte de Préstamos por Usuario\nIngrese el ID del usuario:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                if (usuarioTienePrestamo)
+                {
+                    Console.WriteLine($"Usuario: {usuarioNombre} | ID: {usuarioID}\nPréstamo activo: ID: {prestamoID}, Fecha de préstamo: {fechaPrestamo}, Fecha límite: {fechaLimite}, Estado: {estado}");
+                }
+                else
+                {
+                    Console.WriteLine($"Usuario: {usuarioNombre} | ID: {usuarioID}\nNo tiene préstamos activos.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un usuario con el ID '{id}'.");
+            }
+            Console.ReadKey();
+        }
+        //--- Reporte por Libro ---//
+        static void ReportByBook()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Reporte de Préstamos por Libro\nIngrese el título del libro:");
+            Console.WriteLine("================================");
+            string title = Console.ReadLine() ?? "";
+            if (title.Equals(libroTitulo, StringComparison.OrdinalIgnoreCase))
+            {
+                if (!libroDisponible)
+                {
+                    Console.WriteLine($"Libro: {libroTitulo} | ID: {libroID}\nPréstamo activo: ID: {prestamoID}, Fecha de préstamo: {fechaPrestamo}, Fecha límite: {fechaLimite}, Estado: {estado}");
+                }
+                else
+                {
+                    Console.WriteLine($"Libro: {libroTitulo} | ID: {libroID}\nNo tiene préstamos activos.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un libro con el título '{title}'.");
+            }
+            Console.ReadKey();
+        }
+        //--- Reporte de Préstamos Vencidos ---//
+        static void ReportOverdue()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Reporte de Préstamos Vencidos");
+            Console.WriteLine("================================");
+            if (estado == "Activo" && DateTime.TryParse(fechaLimite, out DateTime dueDate) && dueDate < DateTime.Now)
+            {
+                Console.WriteLine($"Préstamo vencido: ID: {prestamoID}, Usuario: {usuarioNombre}, Libro: {libroTitulo}, Fecha límite: {fechaLimite}");
+            }
+            else
+            {
+                Console.WriteLine("No hay préstamos vencidos.");
+            }
+            Console.ReadKey();
+        }
+
+        //--- Resumen General ---//
+        static void ReportSummary()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Resumen General de Préstamos");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(prestamoID))
+            {
+                Console.WriteLine("No hay préstamos registrados.");
+            }
+            else
+            {
+                Console.WriteLine($"Total de préstamos: 1\nPréstamos activos: {(estado == "Activo" ? 1 : 0)}\nPréstamos devueltos: {(estado == "Devuelto" ? 1 : 0)}\nPréstamos vencidos: {(estado == "Activo" && DateTime.TryParse(fechaLimite, out DateTime dueDate) && dueDate < DateTime.Now ? 1 : 0)}");
+            }
+            Console.ReadKey();
+        }
     }
 }

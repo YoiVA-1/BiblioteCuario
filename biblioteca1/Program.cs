@@ -16,6 +16,7 @@ namespace biblioteca1
         static string usuarioNombre = "";
         static string correo = "";
         static bool usuarioActivo = true;
+        static bool usuarioTienePrestamo = false; // Variable para simular si el usuario tiene préstamos activos temporalmente
 
         static void Main(string[] args)
         {
@@ -498,6 +499,7 @@ namespace biblioteca1
             Console.ReadKey();
         }
         //--- Eliminar Usuario ---//
+//--- Eliminar Usuario ---//
         static void DeleteUser()
         {
             Console.Clear();
@@ -505,17 +507,29 @@ namespace biblioteca1
             Console.WriteLine("Eliminar Usuario\nIngrese el ID del usuario a eliminar:");
             Console.WriteLine("================================");
             string id = Console.ReadLine() ?? "";
+
             if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
             {
-                usuarioNombre = "";
-                correo = "";
-                usuarioID = "";
-                Console.WriteLine($"Usuario eliminado exitosamente.");
+                // Validación condicional: Evita eliminar si tiene préstamos activos
+                if (usuarioTienePrestamo)
+                {
+                    Console.WriteLine("\n[ERROR] No se puede eliminar al usuario porque tiene préstamos activos.");
+                }
+                else
+                {
+                    usuarioID = "";
+                    usuarioNombre = "";
+                    correo = "";
+                    usuarioActivo = false;
+                    Console.WriteLine("\nUsuario eliminado exitosamente.");
+                }
             }
             else
             {
-                Console.WriteLine($"No se encontró un usuario con el ID '{id}'.");
+                Console.WriteLine($"\nNo se encontró un usuario con el ID '{id}'.");
             }
+            
+            Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
         }
     }

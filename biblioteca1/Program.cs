@@ -577,18 +577,30 @@ namespace biblioteca1
             Console.WriteLine("================================");
             Console.WriteLine("Registro de Préstamo\nIngrese los datos del préstamo:");
             Console.WriteLine("================================");
-            Console.Write("ID de préstamo: ");
-            prestamoID = Console.ReadLine() ?? "";
-            Console.Write("Fecha de préstamo (dd/MM/yyyy): ");
-            fechaPrestamo = Console.ReadLine() ?? "";
-            Console.Write("Fecha límite de devolución (dd/MM/yyyy): ");
-            fechaLimite = Console.ReadLine() ?? "";
-            estado = "Activo";
-            usuarioTienePrestamo = true; // Simula que el usuario tiene un préstamo activo
-
-            Console.WriteLine($"Préstamo '{prestamoID}' registrado exitosamente.");
-            Console.WriteLine("\nPresione una tecla para continuar...");
-            Console.ReadKey();
+            Console.Write("Ingrese el nombre del usuario que quiere hacer el préstamo: ");
+            string opcionUsuarioPrestamo= Console.ReadLine() ?? "";
+            if (opcionUsuarioPrestamo == usuarioNombre && usuarioActivo)
+                {
+                    Console.Write("Ingrese el título del libro a prestar: ");
+                    string opcionLibroPrestamo = Console.ReadLine() ?? "";
+                if(opcionLibroPrestamo == libroTitulo && libroDisponible)
+                {
+                    Console.Write("Ingrese el ID del préstamo: ");
+                    prestamoID = Console.ReadLine() ?? "";
+                    Console.Write("Ingrese la fecha de préstamo (dd/MM/yyyy): ");
+                    fechaPrestamo = Console.ReadLine() ?? "";
+                    Console.Write("Ingrese la fecha límite de devolución (dd/MM/yyyy): ");
+                    fechaLimite = Console.ReadLine() ?? "";
+                    estado = "Activo";
+                    libroDisponible = false; // Simula que el libro ya no está disponible
+                    usuarioTienePrestamo = true; // Simula que el usuario ahora tiene un préstamo activo
+                    Console.WriteLine($"Préstamo '{prestamoID}' registrado exitosamente.");
+                }
+                else
+                {
+                    Console.WriteLine("El libro no está disponible para préstamo o no existe.");
+                }
+            }
         }
         //--- Listado de Préstamos ---//
         static void ListLoansMenu()
@@ -728,6 +740,7 @@ namespace biblioteca1
             if (id.Equals(prestamoID, StringComparison.OrdinalIgnoreCase))
             {
                 prestamoID = "";
+                libroDisponible = true; // Simula que el libro ahora está disponible
                 fechaPrestamo = "";
                 fechaLimite = "";
                 fechaDevolucion = "";

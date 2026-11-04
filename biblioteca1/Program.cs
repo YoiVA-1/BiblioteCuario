@@ -57,9 +57,18 @@ namespace biblioteca1
                         ShowPersistenceMenu();
                         break;
                     case "6":
-                        Console.WriteLine("Saliendo del programa...");
-                        Environment.Exit(0);
-                        break;
+                        Console.Write("¿Está seguro que desea salir? (S/N)");
+                        string salir = Console.ReadLine() ?? "0";
+                        if (salir.ToUpper() == "S")
+                        {
+                            Console.WriteLine("Saliendo del programa...");
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Operación cancelada. Presione cualquier tecla para continuar...");
+                            Console.ReadKey();
+                        }
                     default:
                         Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
                         break;

@@ -716,5 +716,32 @@ namespace biblioteca1
             }
             Console.ReadKey();
         }
+        //--- Eliminar Préstamo ---//
+        static void DeleteLoan()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Eliminar Préstamo\nIngrese el ID del préstamo a eliminar:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+
+            if (id.Equals(prestamoID, StringComparison.OrdinalIgnoreCase))
+            {
+                prestamoID = "";
+                fechaPrestamo = "";
+                fechaLimite = "";
+                fechaDevolucion = "";
+                estado = "";
+                usuarioTienePrestamo = false; // Simula que el usuario ya no tiene un préstamo activo
+                Console.WriteLine("Préstamo eliminado exitosamente.");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un préstamo con el ID '{id}'.");
+            }
+
+            Console.WriteLine("\nPresione cualquier tecla para continuar...");
+            Console.ReadKey();
+        }
     }
 }

@@ -590,5 +590,84 @@ namespace biblioteca1
             Console.WriteLine("\nPresione una tecla para continuar...");
             Console.ReadKey();
         }
+        //--- Listado de Préstamos ---//
+        static void ListLoansMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Préstamos\nSeleccione una opción:\n1. Listar todos los préstamos\n2. Listar préstamos activos\n3. Listar préstamos devueltos\n4. Volver al menú de préstamos");
+            Console.WriteLine("================================");
+            string listOption = Console.ReadLine() ?? "0";
+            switch (listOption)
+            {
+                case "1":
+                    ListAllLoans();
+                    break;
+                case "2":
+                    ListLoansActive();
+                    break;
+                case "3":
+                    ListLoansClosed();
+                    break;
+                case "4":
+                    ShowLoansMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+        //--- listar todo los prestamos por ---//
+        static void ListAllLoans()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Todos los Préstamos");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(prestamoID))
+            {
+                Console.WriteLine("No hay préstamos registrados.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {prestamoID} | Fecha de préstamo: {fechaPrestamo}, Fecha límite: {fechaLimite}, Estado: {estado}");
+            }
+            Console.ReadKey();
+        }
+        //--- listar prestamos activos ---//
+        static void ListLoansActive()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Préstamos Activos");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(prestamoID) || estado != "Activo")
+            {
+                Console.WriteLine("No hay préstamos activos.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {prestamoID} | Fecha de préstamo: {fechaPrestamo}, Fecha límite: {fechaLimite}, Estado: {estado}");
+            }
+            Console.ReadKey();
+        }
+
+        //--- listar prestamos devueltos ---//
+        static void ListLoansClosed()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Préstamos Devueltos");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(prestamoID) || estado != "Devuelto")
+            {
+                Console.WriteLine("No hay préstamos devueltos.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {prestamoID} | Fecha de préstamo: {fechaPrestamo}, Fecha límite: {fechaLimite}, Fecha de devolución: {fechaDevolucion}, Estado: {estado}");
+            }
+            Console.ReadKey();
+        }
     }
 }

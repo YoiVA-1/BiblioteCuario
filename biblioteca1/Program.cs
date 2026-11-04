@@ -53,9 +53,9 @@ namespace biblioteca1
                     case "4":
                         ShowSearchReportsMenu();
                         break;
-                    //case "5":
-                        //ShowPersistenceMenu();
-                        //break;
+                    case "5":
+                        ShowPersistenceMenu();
+                        break;
                     case "6":
                         Console.WriteLine("Saliendo del programa...");
                         Environment.Exit(0);
@@ -934,6 +934,76 @@ namespace biblioteca1
             {
                 Console.WriteLine($"Total de préstamos: 1\nPréstamos activos: {(estado == "Activo" ? 1 : 0)}\nPréstamos devueltos: {(estado == "Devuelto" ? 1 : 0)}\nPréstamos vencidos: {(estado == "Activo" && DateTime.TryParse(fechaLimite, out DateTime dueDate) && dueDate < DateTime.Now ? 1 : 0)}");
             }
+            Console.ReadKey();
+        }
+        //--- Menú de guardar/cargar ---//
+        static void ShowPersistenceMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Guardar/Cargar\nSeleccione una opción:\n1. Guardar datos\n2. Cargar datos\n3. resetear datos\n4. Volver al menú principal");
+            Console.WriteLine("================================");
+            string persistenceOption = Console.ReadLine() ?? "0";
+            switch (persistenceOption)
+            {
+                case "1":
+                    SaveData();
+                    break;
+                case "2":
+                    LoadData();
+                    break;
+                case "3":
+                    ResetData();
+                    break;
+                case "4":
+                    ShowMainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+        static void SaveData()
+        {
+            Console.Clear();
+            Console.WriteLine("Guardando datos...");
+            // Aquí iría la lógica para guardar los datos en un archivo o base de datos
+            Console.WriteLine("Datos guardados exitosamente.");
+            Console.ReadKey();
+        }
+        // cargar datos
+        static void LoadData()
+        {
+            Console.Clear();
+            Console.WriteLine("Cargando datos...");
+            // Aquí iría la lógica para cargar los datos desde un archivo o base de datos
+            Console.WriteLine("Datos cargados exitosamente.");
+            Console.ReadKey();
+        }
+    // resetear datos
+        static void ResetData()
+        {
+            Console.Clear();
+            Console.WriteLine("Reseteando datos...");
+            // Aquí iría la lógica para resetear los datos a su estado inicial
+            libroTitulo = "";
+            libroAutor = "";
+            libroAño = "";
+            libroCategoria = "";
+            libroID = "";
+            usuarioNombre = "";
+            correo = "";
+            usuarioID = "";
+            prestamoID = "";
+            fechaPrestamo = "";
+            fechaLimite = "";
+            fechaDevolucion = "";
+            estado = "";
+            libroDisponible = true;
+            usuarioActivo = false;
+            usuarioTienePrestamo = false;
+            
+            Console.WriteLine("Datos reseteados exitosamente.");
             Console.ReadKey();
         }
     }

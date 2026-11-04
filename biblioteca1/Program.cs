@@ -12,6 +12,12 @@ namespace biblioteca1
         static string libroCategoria = "";
         static bool libroDisponible = true;
 
+        static string usuarioID = "";
+        static string usuarioNombre = "";
+        static string correo = "";
+        static bool usuarioActivo = true;
+        static bool usuarioTienePrestamo = false; // Variable para simular si el usuario tiene préstamos activos temporalmente
+
         static void Main(string[] args)
         {
             ShowMainMenu();
@@ -33,9 +39,9 @@ namespace biblioteca1
                     case "1":
                         ShowBookMenu();
                         break;
-                    //case "2":
-                        //ShowUserMenu();
-                        //break;
+                    case "2":
+                        ShowUserMenu();
+                        break;
                     //case "3":
                         //ShowLoansMenu();
                         //break;
@@ -317,6 +323,213 @@ namespace biblioteca1
             {
                 Console.WriteLine("No se encontró el libro.");
             }
+            Console.ReadKey();
+        }
+//--- Menú de Usuarios ---//
+        static void ShowUserMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Usuarios\nSeleccione una opción:\n1. Registrar usuario\n2. Listar usuarios\n3. Ver detalle de usuario\n4. Actualizar usuario\n5. Eliminar usuario\n6. Volver al menú principal");
+            Console.WriteLine("================================");
+            string userOption = Console.ReadLine() ?? "0";
+            switch (userOption)
+            {
+                case "1":
+                    RegisterUser();
+                    break;
+                case "2":
+                    ListUsers();
+                    break;
+                case "3":
+                    ViewUserDetail();
+                    break;
+                case "4":
+                    UpdateUserMenu();
+                    break;
+                case "5":
+                    DeleteUser();
+                    break;
+                case "6":
+                    ShowMainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+        //--- Registro de Usuarios ---//
+        static void RegisterUser()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Registro de Usuario\nIngrese los datos del usuario:");
+            Console.WriteLine("================================");
+            Console.Write("Nombre: ");
+            usuarioNombre = Console.ReadLine() ?? "";
+            Console.Write("Correo electrónico: ");
+            correo = Console.ReadLine() ?? "";
+            Console.Write("ID de usuario: ");
+            usuarioID = Console.ReadLine() ?? "";
+            usuarioActivo = true;
+
+            Console.WriteLine($"Usuario '{usuarioNombre}' registrado exitosamente.");
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
+        }
+
+        //--- Listado de Usuarios ---//
+        static void ListUsers()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Listado de Usuarios");
+            Console.WriteLine("================================");
+            if (string.IsNullOrEmpty(usuarioNombre))
+            {
+                Console.WriteLine("No hay usuarios registrados.");
+            }
+            else
+            {
+                Console.WriteLine($"ID: {usuarioID} | Nombre: {usuarioNombre}, Correo: {correo}");
+            }
+            Console.ReadKey();
+        }
+        //--- Ver Detalle de Usuario ---//
+        static void ViewUserDetail()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Detalle de Usuario\nIngrese el ID del usuario:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"Nombre: {usuarioNombre}\nCorreo: {correo}\nID: {usuarioID}");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un usuario con el ID '{id}'.");
+            }
+            Console.ReadKey();
+        }
+        //--- Actualizar Usuario ---//
+        static void UpdateUserMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Actualización de Usuarios\nSeleccione una opción:\n1. Actualizar nombre\n2. Actualizar correo\n3. Volver al menú de usuarios");
+            Console.WriteLine("================================");
+            string updateOption = Console.ReadLine() ?? "0";
+            switch (updateOption)
+            {
+                case "1":
+                    EditUserName();
+                    break;
+                case "2":
+                    EditUserContact();
+                    break;
+                case "3":
+                    ToggleUserActiveStatus();
+                break;
+                case "4":
+                    DeleteUser();
+                    break;
+                case "5":
+                    ShowUserMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+        //--- Editar Nombre de Usuario ---//
+        static void EditUserName()
+        {
+            Console.Clear();
+            Console.WriteLine("Actualizar Nombre de Usuario\nIngrese el ID del usuario:");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.Write("Ingrese el nuevo nombre: ");
+                usuarioNombre = Console.ReadLine() ?? "";
+                Console.WriteLine($"Nombre actualizado a '{usuarioNombre}'.");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el usuario.");
+            }
+            Console.ReadKey();
+        }
+
+        //--- Editar Contacto de Usuario ---//
+        static void EditUserContact()
+        {
+            Console.Clear();
+            Console.WriteLine("Actualizar Correo de Usuario\nIngrese el ID del usuario:");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.Write("Ingrese el nuevo correo: ");
+                correo = Console.ReadLine() ?? "";
+                Console.WriteLine($"Correo actualizado a '{correo}'.");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el usuario.");
+            }
+            Console.ReadKey();
+        }
+        //--- activar / Desactivar Usuario ---//
+        static void ToggleUserActiveStatus()
+        {
+            Console.Clear();
+            Console.WriteLine("Activar / Desactivar Usuario\nIngrese el ID del usuario:");
+            string id = Console.ReadLine() ?? "";
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                usuarioActivo = !usuarioActivo;
+                string status = usuarioActivo ? "activo" : "inactivo";
+                Console.WriteLine($"El usuario ahora está {status}.");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el usuario.");
+            }
+            Console.ReadKey();
+        }
+        //--- Eliminar Usuario ---//
+//--- Eliminar Usuario ---//
+        static void DeleteUser()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Eliminar Usuario\nIngrese el ID del usuario a eliminar:");
+            Console.WriteLine("================================");
+            string id = Console.ReadLine() ?? "";
+
+            if (id.Equals(usuarioID, StringComparison.OrdinalIgnoreCase))
+            {
+                // Validación condicional: Evita eliminar si tiene préstamos activos
+                if (usuarioTienePrestamo)
+                {
+                    Console.WriteLine("\n[ERROR] No se puede eliminar al usuario porque tiene préstamos activos.");
+                }
+                else
+                {
+                    usuarioID = "";
+                    usuarioNombre = "";
+                    correo = "";
+                    usuarioActivo = false;
+                    Console.WriteLine("\nUsuario eliminado exitosamente.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"\nNo se encontró un usuario con el ID '{id}'.");
+            }
+            
+            Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
         }
     }

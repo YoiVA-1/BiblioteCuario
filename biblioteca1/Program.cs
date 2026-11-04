@@ -783,5 +783,25 @@ namespace biblioteca1
                     break;
             }
         }
+        //--- Buscar Libro ---//
+        static void SearchBook()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Buscar Libro\nIngrese el título, autor, ID o categoría del libro:");
+            Console.WriteLine("================================");
+            string searchTerm = Console.ReadLine() ?? "";
+            if (searchTerm.Equals(libroTitulo, StringComparison.OrdinalIgnoreCase) ||
+                searchTerm.Equals(libroAutor, StringComparison.OrdinalIgnoreCase) ||
+                searchTerm.Equals(libroID, StringComparison.OrdinalIgnoreCase) ||
+                searchTerm.Equals(libroCategoria, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"Libro encontrado: ID: {libroID} | Título: {libroTitulo}, Autor: {libroAutor}, Año: {libroAño}, Categoría: {libroCategoria}");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un libro con el término '{searchTerm}'.");
+            }
+        }
     }
 }

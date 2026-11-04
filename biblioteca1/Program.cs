@@ -47,9 +47,9 @@ namespace biblioteca1
                     case "2":
                         ShowUserMenu();
                         break;
-                    //case "3":
-                        //ShowLoansMenu();
-                        //break;
+                    case "3":
+                        ShowLoansMenu();
+                        break;
                     //case "4":
                         //ShowSearchReportsMenu();
                         //break;
@@ -535,6 +535,40 @@ namespace biblioteca1
             
             Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
+        }
+
+        //--- Menú de Préstamos ---//
+        static void ShowLoansMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Menú de Préstamos\nSeleccione una opción:\n1. Registrar préstamo\n2. Listar préstamos\n3. Ver detalle de préstamo\n4. Registrar devolucion\n5. Eliminar préstamo\n6. Volver al menú principal");
+            Console.WriteLine("================================");
+            string loanOption = Console.ReadLine() ?? "0";
+            switch (loanOption)
+            {
+                case "1":
+                    CreateLoan();
+                    break;
+                case "2":
+                    ListLoansMenu();
+                    break;
+                case "3":
+                    ViewLoanDetail();
+                    break;
+                case "4":
+                    RegisterReturn();
+                    break;
+                case "5":
+                    DeleteLoan();
+                    break;
+                case "6":
+                    ShowMainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
         }
     }
 }

@@ -65,5 +65,10 @@ namespace biblioteca1.models
             string fechaDevolucionTexto = FechaDevolucion.HasValue ? FechaDevolucion.Value.ToString("dd/MM/yyyy") : "No devuelto";
             return $"=====================\nDetalle del Préstamo\n=====================\n-ID: {prestamoID}\n-Usuario: {UsuarioNombre}\n-Libro: {LibroTitulo}\n-Fecha de Préstamo: {FechaPrestamo:dd/MM/yyyy}\n-Fecha de Vencimiento: {FechaVencimiento:dd/MM/yyyy}\n-Fecha de Devolución: {fechaDevolucionTexto}\n-Estado: {Estado}\n=====================";
         }
+
+        public override string ToString()
+        {
+            return ResumenCorto();
+        }
     }
 }

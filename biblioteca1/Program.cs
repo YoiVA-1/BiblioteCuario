@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq.Expressions;
+using biblioteca1.models;
 
 namespace biblioteca1
 {
@@ -25,6 +27,31 @@ namespace biblioteca1
 
         static void Main(string[] args)
         {
+            Prueba();
+            ShowMainMenu();
+        }
+
+        static void Prueba()
+        {
+            Console.WriteLine("================================");
+            Console.WriteLine("Prueba de la Biblioteca");
+
+            // Crear dos usuarios
+            Usuario usuario1 = new Usuario("Juan", "Pérez", "juan.perez@example.com", "301456345");
+            Usuario usuario2 = new Usuario("María", "Gómez", "maria.gomez@example.com", "310321545");
+
+            // Crear dos libros
+            Libro libro1 = new Libro("Cien Años de Soledad", "Gabriel García Márquez", 1967, "Novela");
+            Libro libro2 = new Libro("1984", "George Orwell", 1949, "Distopía");
+
+            //Prueba
+            Console.WriteLine($"====ESTADO INICIAL====\nResumen de Usuarios:\n{usuario1.ToString()}\n{usuario2.ToString()}\nResumen de Libros:\n{libro1.ToString()}\n{libro2.ToString()}\n{usuario1.DetalleCompleto()}\n{usuario2.DetalleCompleto()}\n{libro1.DetalleCompleto()}\n{libro2.DetalleCompleto()}\n=====================");
+
+            // Crear un préstamo
+            Prestamo prestamo1 = new Prestamo(1, usuario1, libro1, DateTime.Now, DateTime.Now.AddDays(7));
+
+            // Mostrar el resumen del préstamo
+            Console.WriteLine($"=== Pruebas y Validaciones ===\nResumen del Préstamo:\n{prestamo1.ToString()}\n{prestamo1.DetalleCompleto()}\n================ FIN DE PRUEBAS =====================");
             ShowMainMenu();
         }
 

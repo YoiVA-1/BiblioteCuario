@@ -27,5 +27,11 @@ namespace biblioteca1.models
             LibroDisponible = libroDisponible;
         }
 
+        public string ResumenCorto()
+        {
+            return $"ID: {LibroId}, Título: {LibroTitulo}, Autor: {LibroAutor}";
+        }
+
     }
+
 }

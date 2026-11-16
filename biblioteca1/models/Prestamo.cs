@@ -58,5 +58,12 @@ namespace biblioteca1.models
             EstaVencido();
             return $"ID: {prestamoID}, Usuario: {UsuarioNombre}, Libro: {LibroTitulo}, Estado: {Estado}";
         }
+
+        public string DetalleCompleto()
+        {
+            EstaVencido();
+            string fechaDevolucionTexto = FechaDevolucion.HasValue ? FechaDevolucion.Value.ToString("dd/MM/yyyy") : "No devuelto";
+            return $"=====================\nDetalle del Préstamo\n=====================\n-ID: {prestamoID}\n-Usuario: {UsuarioNombre}\n-Libro: {LibroTitulo}\n-Fecha de Préstamo: {FechaPrestamo:dd/MM/yyyy}\n-Fecha de Vencimiento: {FechaVencimiento:dd/MM/yyyy}\n-Fecha de Devolución: {fechaDevolucionTexto}\n-Estado: {Estado}\n=====================";
+        }
     }
 }

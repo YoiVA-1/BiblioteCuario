@@ -35,6 +35,28 @@ namespace biblioteca1.models
             PrestamoActivo = true;
             LibroID.LibroDisponible = false; // Marcar el libro como no disponible al crear un préstamo
         }
+        
+        public bool EstaVencido()
+        {
+            if (Estado == EstadoPrestamo.Activo && DateTime.Now > FechaVencimiento)
+            {
+                Estado = EstadoPrestamo.Vencido;
+                return true;
+            }
+            return Estado == EstadoPrestamo.Vencido;
+        }
 
+        public int DiasTranscurridos()
+        {
+            DateTime FechaFinal = FechaDevolucion ?? DateTime.Now;
+            TimeSpan diferencia = FechaFinal - FechaPrestamo;
+            return (int)diferencia.TotalDays;
+        }
+
+        public string ResumenCorto()
+        {
+            EstaVencido();
+            return $"ID: {prestamoID}, Usuario: {UsuarioNombre}, Libro: {LibroTitulo}, Estado: {Estado}";
+        }
     }
 }

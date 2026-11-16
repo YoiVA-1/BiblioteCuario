@@ -35,7 +35,7 @@ namespace biblioteca1.models
             PrestamoActivo = true;
             LibroID.LibroDisponible = false; // Marcar el libro como no disponible al crear un préstamo
         }
-        
+
         public bool EstaVencido()
         {
             if (Estado == EstadoPrestamo.Activo && DateTime.Now > FechaVencimiento)

@@ -45,13 +45,13 @@ namespace biblioteca1
             Libro libro2 = new Libro("1984", "George Orwell", 1949, "Distopía");
 
             //Prueba
-            Console.WriteLine($"====ESTADO INICIAL====\nResumen de Usuarios:{usuario1.ToString()}\n{usuario2.ToString()}\nResumen de Libros:{libro1.ToString()}\n{libro2.ToString()}\nDetalle usuarios:\n{usuario1.DetalleCompleto()}\n{usuario2.DetalleCompleto()}\nDetalle libros:\n{libro1.DetalleCompleto()}\n{libro2.DetalleCompleto()}\n=====================");
+            Console.WriteLine($"====ESTADO INICIAL====\nResumen de Usuarios:\n{usuario1.ToString()}\n{usuario2.ToString()}\nResumen de Libros:\n{libro1.ToString()}\n{libro2.ToString()}\n{usuario1.DetalleCompleto()}\n{usuario2.DetalleCompleto()}\n{libro1.DetalleCompleto()}\n{libro2.DetalleCompleto()}\n=====================");
 
             // Crear un préstamo
             Prestamo prestamo1 = new Prestamo(1, usuario1, libro1, DateTime.Now, DateTime.Now.AddDays(7));
 
             // Mostrar el resumen del préstamo
-            Console.WriteLine($"=== Pruebas y Validaciones ===\nResumen del Préstamo:\n{prestamo1.ResumenCorto()}\nDetalle del Préstamo:\n{prestamo1.DetalleCompleto()}\n================ FIN DE PRUEBAS =====================");
+            Console.WriteLine($"=== Pruebas y Validaciones ===\nResumen del Préstamo:\n{prestamo1.ToString()}\n{prestamo1.DetalleCompleto()}\n================ FIN DE PRUEBAS =====================");
             ShowMainMenu();
         }
 

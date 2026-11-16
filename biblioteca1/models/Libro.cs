@@ -16,7 +16,7 @@ namespace biblioteca1.models
         }
 
         
-        public Libro(string libroTitulo, string libroAutor, int libroAño, string libroCategoria, bool libroDisponible)
+        public Libro(string libroTitulo, string libroAutor, int libroAño, string libroCategoria)
         {
             contador++;
             LibroId = contador;

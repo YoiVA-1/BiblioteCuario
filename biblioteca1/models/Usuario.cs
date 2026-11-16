@@ -37,5 +37,10 @@ namespace biblioteca1.models
             string estadoTexto = Activo ? "Si" : "No";
             return $"=====================\nDetalle del Usuario\n=====================\n-ID: {UsuarioId}\n-Nombre: {UsuarioNombre}\n-Apellido: {UsuarioApellido}\n-Email: {UsuarioEmail}\n-Teléfono: {UsuarioTelefono}\n-Activo: {estadoTexto}\n=====================";
         }
+
+        public override string ToString()
+        {
+            return ResumenCorto();
+        }
     }
 }

@@ -36,5 +36,9 @@ namespace biblioteca1.models
             return $"=====================\nDetalle del Libro\n=====================\n-ID: {LibroId}\n-Título: {LibroTitulo}\n-Autor: {LibroAutor}\n-Año: {LibroAño}\n-Categoría: {LibroCategoria}\n-Disponible: {LibroDisponible}\n=====================";
         }
 
+        public override string ToString()
+        {
+            return ResumenCorto();
+        }
     }
 }

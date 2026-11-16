@@ -10,6 +10,8 @@ namespace biblioteca1.models
         public string UsuarioEmail { get; set; } = string.Empty;
         public string UsuarioTelefono { get; set; } = string.Empty;
 
+        public bool Activo { get; set; } = true;
+
         public Usuario()
         {
         }
@@ -24,5 +26,10 @@ namespace biblioteca1.models
             UsuarioTelefono = usuarioTelefono;
         }
 
+        public string ResumenCorto()
+        {
+            string estadoTexto = Activo ? "Activo" : "Inactivo";
+            return $"ID: {UsuarioId}, Nombre: {UsuarioNombre}, Apellido: {UsuarioApellido}, Estado: {estadoTexto}";
+        }
     }
 }

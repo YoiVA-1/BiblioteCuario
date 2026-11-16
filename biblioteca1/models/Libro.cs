@@ -9,14 +9,14 @@ namespace biblioteca1.models
         public string LibroAutor { get; set; } = string.Empty;
         public int LibroAño { get; set; } = 0;
         public string LibroCategoria { get; set; } = string.Empty;
-        public string LibroDisponible { get; set; } = string.Empty;
+        public bool LibroDisponible { get; set; } = true;
 
         public Libro()
         {
-
         }
+
         
-        public Libro(string libroTitulo, string libroAutor, int libroAño, string libroCategoria, string libroDisponible)
+        public Libro(string libroTitulo, string libroAutor, int libroAño, string libroCategoria, bool libroDisponible)
         {
             contador++;
             LibroId = contador;
@@ -24,16 +24,18 @@ namespace biblioteca1.models
             LibroAutor = libroAutor;
             LibroAño = libroAño;
             LibroCategoria = libroCategoria;
-            LibroDisponible = libroDisponible;
+            LibroDisponible = true;
         }
 
         public string ResumenCorto()
         {
-            return $"ID: {LibroId}, Título: {LibroTitulo}, Autor: {LibroAutor}";
+            string estadoTexto = LibroDisponible ? "Disponible" : "Prestado";
+            return $"ID: {LibroId}, Título: {LibroTitulo}, Autor: {LibroAutor}, Estado: {estadoTexto}";
         }
         public string DetalleCompleto()
         {
-            return $"=====================\nDetalle del Libro\n=====================\n-ID: {LibroId}\n-Título: {LibroTitulo}\n-Autor: {LibroAutor}\n-Año: {LibroAño}\n-Categoría: {LibroCategoria}\n-Disponible: {LibroDisponible}\n=====================";
+            string estadoTexto = LibroDisponible ? "Si" : "No";
+            return $"=====================\nDetalle del Libro\n=====================\n-ID: {LibroId}\n-Título: {LibroTitulo}\n-Autor: {LibroAutor}\n-Año: {LibroAño}\n-Categoría: {LibroCategoria}\n-Disponible: {estadoTexto}\n=====================";
         }
 
         public override string ToString()
